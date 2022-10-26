@@ -1,28 +1,32 @@
 'use strict'
 
-var text1 = {
-  text: '',
-  textColor: 'white',
-  fontSize: 80,
-  position: { x: 20, y: 100 },
-}
-var text2 = {
-  text: '',
-  textColor: 'white',
-  fontSize: 80,
-  position: { x: 20, y: 450 },
-}
-
-var gMeme = {
-  imgUrl: 'img/1.jpg',
-  lines: [text1, text2],
-  lineEditedIdx: '0',
-}
-
 var gImages = [
   { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
   { id: 2, url: 'img/2.jpg', keywords: ['funny'] },
 ]
+
+var gMeme = {
+  imgUrl: 'img/1.jpg',
+  lines: createTextLines(),
+  editedTextIdx: '0',
+}
+
+function createTextLines() {
+  return [
+    {
+      text: '',
+      textColor: 'white',
+      fontSize: 80,
+      position: { x: 20, y: 100 },
+    },
+    {
+      text: '',
+      textColor: 'white',
+      fontSize: 80,
+      position: { x: 20, y: 450 },
+    },
+  ]
+}
 
 function getMeme() {
   return gMeme
@@ -31,12 +35,13 @@ function getMeme() {
 function getImages() {
   return gImages
 }
+
 function getEditedTextIdx() {
-  return gMeme.lineEditedIdx
+  return gMeme.editedTextIdx
 }
 
 function changeEditedLine() {
-  gMeme.lineEditedIdx = gMeme.lineEditedIdx === '0' ? '1' : '0'
+  gMeme.editedTextIdx = gMeme.editedTextIdx === '0' ? '1' : '0'
 }
 
 function setLineText(line, txt) {
