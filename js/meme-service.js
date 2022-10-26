@@ -36,30 +36,27 @@ function getImages() {
   return gImages
 }
 
-function getEditedTextIdx() {
-  return gMeme.editedTextIdx
-}
-
 function changeEditedLine() {
   gMeme.editedTextIdx = gMeme.editedTextIdx === '0' ? '1' : '0'
 }
 
-function setLineText(line, txt) {
-  gMeme.lines[line].text = txt
+function setLineText(txt) {
+  gMeme.lines[gMeme.editedTextIdx].text = txt
+  return gMeme.lines[gMeme.editedTextIdx].text
 }
 
 function setImg(imgID) {
   gMeme.imgUrl = `img/${imgID}.jpg`
 }
 
-function setTextColor(line, color) {
-  gMeme.lines[line].textColor = color
+function setTextColor(color) {
+  gMeme.lines[gMeme.editedTextIdx].textColor = color
 }
 
-function increaseFont(line) {
-  gMeme.lines[line].fontSize += 5
+function increaseFont() {
+  gMeme.lines[gMeme.editedTextIdx].fontSize += 5
 }
 
-function decreaseFont(line) {
-  gMeme.lines[line].fontSize -= 5
+function decreaseFont() {
+  gMeme.lines[gMeme.editedTextIdx].fontSize -= 5
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-var gElCanvas
+let gElCanvas
 let gCtx
 
 function renderMeme() {
@@ -32,30 +32,26 @@ function drawText(textProps) {
 
 function handleTextInput(event) {
   event.preventDefault()
-  var lineIdx = getEditedTextIdx()
   var text = event.target.value
-  setLineText(lineIdx, text)
+  setLineText(text)
   renderMeme()
 }
 
 function handleColorInput(event) {
-  var lineIdx = getEditedTextIdx()
   event.preventDefault()
   var color = event.target.value
-  setTextColor(lineIdx, color)
+  setTextColor(color)
   renderMeme()
 }
 
-function changeFontSize(elButton) {
-  var lineIdx = getEditedTextIdx()
-  if (elButton.value === '+') increaseFont(lineIdx)
-  else decreaseFont(lineIdx)
+function onChangeFontSize(elButton) {
+  if (elButton.value === '+') increaseFont()
+  else decreaseFont()
   renderMeme()
 }
 
 function onSwitchLine() {
   changeEditedLine()
-  var meme = getMeme()
-  var line = getEditedTextIdx()
-  document.querySelector('[name="meme-text"]').value = meme.lines[line].text
+  var newText = setLineText()
+  document.querySelector('[name="meme-text"]').value = newText ? newText : ''
 }

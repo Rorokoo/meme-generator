@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.gallery-container.closed {
-  display: none;
-}
-
-.editor-container.closed {
+.closed {
   display: none;
 }
