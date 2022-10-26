@@ -7,10 +7,31 @@
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body onload="onInit()">
     <h1>My Meme Generator</h1>
     <div class="gallery-container"></div>
-    <div class="editor-container"></div>
+    <div class="editor-container closed">
+      <canvas id="meme-canvas" width="500" height="500"></canvas>
+      <label>
+        Text:
+        <input name="meme-text" type="text" oninput="handleTextInput(event)" />
+      </label>
+      <label
+        >Text-Color
+        <input
+          type="color"
+          name="text-color"
+          id=""
+          oninput="handleColorInput(event)"
+      /></label>
+      <button onclick="changeFontSize(this)" value="+">A+</button>
+      <button onclick="changeFontSize(this)" value="-">A-</button>
+      <button class="line-switch-btn" onclick="onSwitchLine(this)">↑↓</button>
+    </div>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
