@@ -8,25 +8,46 @@
     <title>My Meme Generator</title>
   </head>
   <body onload="onInit()">
-    <h1>My Meme Generator</h1>
-    <div class="gallery-container"></div>
-    <div class="editor-container closed">
-      <canvas id="meme-canvas" width="500" height="500"></canvas>
-      <label>
-        Text:
-        <input name="meme-text" type="text" oninput="handleTextInput(event)" />
-      </label>
-      <label
-        >Text-Color
-        <input
-          type="color"
-          name="text-color"
-          id=""
-          oninput="handleColorInput(event)"
-      /></label>
-      <button onclick="onChangeFontSize(this)" value="+">A+</button>
-      <button onclick="onChangeFontSize(this)" value="-">A-</button>
-      <button class="line-switch-btn" onclick="onSwitchLine(this)">↑↓</button>
+    <div class="main-layout">
+      <header class="full">
+        <img class="logo" src="symbols/logo.png" />
+        <nav></nav>
+      </header>
+      <div class="gallery-container"></div>
+      <div class="editor-container closed">
+        <canvas id="meme-canvas" width="450px" height="450px"></canvas>
+
+        <div class="grid-container">
+          <label class="text-input">
+            <input
+              name="meme-text"
+              type="text"
+              oninput="handleTextInput(event)"
+            />
+          </label>
+          <button class="btn line-switch-btn" onclick="onSwitchLine(this)">
+            ↑↓
+          </button>
+          <label class="btn color-input"
+            >🎨
+            <input
+              type="color"
+              name="text-color"
+              id=""
+              oninput="handleColorInput(event)"
+          /></label>
+          <button class="btn" onclick="onChangeFontSize(this)" value="+">
+            A+
+          </button>
+          <button class="btn" onclick="onChangeFontSize(this)" value="-">
+            A-
+          </button>
+        </div>
+      </div>
+      <footer class="full flex column align-center justify-center">
+        <img class="logo" src="symbols/logo.png" />
+        <small>all rights reserved 2019</small>
+      </footer>
     </div>
     <script src="js/gallery-service.js"></script>
     <script src="js/meme-service.js"></script>

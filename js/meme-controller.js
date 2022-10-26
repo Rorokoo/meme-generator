@@ -7,6 +7,8 @@ function renderMeme() {
   gElCanvas = document.getElementById('meme-canvas')
   gCtx = gElCanvas.getContext('2d')
   drawMeme()
+
+  // resizeCanvas()
 }
 
 function drawMeme() {
@@ -34,24 +36,30 @@ function handleTextInput(event) {
   event.preventDefault()
   var text = event.target.value
   setLineText(text)
-  renderMeme()
+  drawMeme()
 }
 
 function handleColorInput(event) {
   event.preventDefault()
   var color = event.target.value
   setTextColor(color)
-  renderMeme()
+  drawMeme()
 }
 
 function onChangeFontSize(elButton) {
   if (elButton.value === '+') increaseFont()
   else decreaseFont()
-  renderMeme()
+  drawMeme()
 }
 
 function onSwitchLine() {
   changeEditedLine()
   var newText = setLineText()
   document.querySelector('[name="meme-text"]').value = newText ? newText : ''
+}
+
+function resizeCanvas() {
+  gElCanvas.width = window.innerWidth - 16
+  gElCanvas.height = window.innerWidth - 16
+  drawMeme()
 }
