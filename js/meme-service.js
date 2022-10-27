@@ -1,10 +1,5 @@
 'use strict'
 
-var gImages = [
-  { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
-  { id: 2, url: 'img/2.jpg', keywords: ['funny'] },
-]
-
 var gMeme = {
   imgUrl: 'img/1.jpg',
   lines: createTextLines(),
@@ -23,7 +18,7 @@ function createTextLines() {
       text: '',
       textColor: 'white',
       fontSize: 80,
-      position: { x: 20, y: 450 },
+      position: { x: 20, y: 400 },
     },
   ]
 }
@@ -32,17 +27,16 @@ function getMeme() {
   return gMeme
 }
 
-function getImages() {
-  return gImages
-}
-
 function changeEditedLine() {
   gMeme.editedTextIdx = gMeme.editedTextIdx === '0' ? '1' : '0'
 }
 
+function getEditedText() {
+  return gMeme.lines[gMeme.editedTextIdx].text
+}
+
 function setLineText(txt) {
   gMeme.lines[gMeme.editedTextIdx].text = txt
-  return gMeme.lines[gMeme.editedTextIdx].text
 }
 
 function setImg(imgID) {

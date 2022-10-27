@@ -4,51 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/gallery.css">
+    <link rel="stylesheet" href="styles/editor.css" />
+    
     <title>My Meme Generator</title>
   </head>
-  <body onload="onInit()">
-    <div class="main-layout">
-      <header class="full">
-        <img class="logo" src="symbols/logo.png" />
-        <nav></nav>
-      </header>
-      <div class="gallery-container"></div>
-      <div class="editor-container closed">
-        <canvas id="meme-canvas" width="450px" height="450px"></canvas>
-
-        <div class="grid-container">
-          <label class="text-input">
-            <input
-              name="meme-text"
-              type="text"
-              oninput="handleTextInput(event)"
-            />
-          </label>
-          <button class="btn line-switch-btn" onclick="onSwitchLine(this)">
-            ↑↓
-          </button>
-          <label class="btn color-input"
-            >🎨
-            <input
-              type="color"
-              name="text-color"
-              id=""
-              oninput="handleColorInput(event)"
-          /></label>
-          <button class="btn" onclick="onChangeFontSize(this)" value="+">
-            A+
-          </button>
-          <button class="btn" onclick="onChangeFontSize(this)" value="-">
-            A-
-          </button>
-        </div>
-      </div>
-      <footer class="full flex column align-center justify-center">
-        <img class="logo" src="symbols/logo.png" />
-        <small>all rights reserved 2019</small>
-      </footer>
+  <body onload="onInit()" class="main-layout flex column space-between">
+    <header class="full flex">
+      <img class="logo" src="symbols/logo.png" />
+      <nav><ul class="flex"><li><button onclick="openGallery()">Gallery</li></button><button><li>About</li></button></nav>
+      <!-- <img class="menu-btn" src="symbols/hamburger.png" /> -->
+    </header>
+    <div class="gallery-container">
+      <div class="keyword-search"></div>
+      <div class="grid-gallery"></div>
     </div>
+    <div class="editor-container flex justify-center closed">
+      
+      <canvas id="meme-canvas" width="580px" height="580px"></canvas>
+      <div class="grid-container">
+        <label class="text-input">
+          <input
+            name="meme-text"
+            type="text"
+            oninput="handleTextInput(event)"
+          />
+        </label>
+        <button class="btn line-switch" onclick="onSwitchLine(this)"></button>
+        <label class="btn color-input">
+          <input
+            type="color"
+            name="text-color"
+            id=""
+            oninput="handleColorInput(event)"
+        /></label>
+        <button
+          class="btn font-grow"
+          onclick="onChangeFontSize(this)"
+          value="+"
+        ></button>
+        <button
+          class="btn font-shrink"
+          onclick="onChangeFontSize(this)"
+          value="-"
+        ></button>
+        <button class="btn add-line"></button>
+        <button class="btn align-center"></button>
+        <button class="btn align-right"></button>
+        <button class="btn align-left"></button>
+        <button class="btn erase"></button>
+        <button class="btn highlight"></button>
+        <select class="btn stickers"></select>
+        <button class="btn share">Share</button>
+      </div>
+    </div>
+
+    <footer class="full flex column justify-center align-center">
+      <img class="logo" src="symbols/logo.png" />
+      <small>all rights reserved 2019</small>
+    </footer>
+
     <script src="js/gallery-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>

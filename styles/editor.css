@@ -1,0 +1,137 @@
+/*CANVAS*/
+
+canvas {
+  display: block;
+}
+
+/*CONTROLS*/
+
+.grid-container {
+  display: grid;
+  grid-gap: 20px;
+  min-width: 465px;
+
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+/*EDITOR BUTTONS*/
+
+.btn {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 0px;
+}
+
+.btn.add-line {
+  background-image: url('../symbols/add.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 2/3;
+}
+
+.btn.align-right {
+  background-image: url('../symbols/align-to-right.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 3/5;
+}
+
+.btn.align-left {
+  background-image: url('../symbols/align-to-left.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 3/3;
+}
+
+.btn.align-center {
+  background-image: url('../symbols/center-text-alignment.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 3/4;
+}
+
+.btn.erase {
+  background-image: url('../symbols/trash.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 2/4;
+}
+
+.btn.highlight {
+  background-image: url('../symbols/A.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 4/4;
+}
+
+.btn.line-switch {
+  background-image: url('../symbols/switch-line.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 2/ 2;
+}
+
+.btn.font-grow {
+  background-image: url('../symbols/increase_font_icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 3/1;
+}
+
+.btn.font-shrink {
+  background-image: url('../symbols/decrease_font_icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 3/2;
+}
+
+.btn.color-input {
+  background-image: url('../symbols/paint-board.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: 4/5;
+}
+
+.btn.stickers {
+  grid-row-start: 5;
+  grid-column: 1/6;
+}
+.btn.share {
+  grid-area: 6/4/ 6/6;
+}
+/******************************/
+
+/*INPUTS*/
+
+.text-input {
+  grid-column: 1/ 6;
+}
+
+.text-input input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: none;
+  font-family: Montserrat;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.color-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.color-input input {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 1140px) {
+}

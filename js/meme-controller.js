@@ -6,9 +6,9 @@ let gCtx
 function renderMeme() {
   gElCanvas = document.getElementById('meme-canvas')
   gCtx = gElCanvas.getContext('2d')
-  drawMeme()
 
-  // resizeCanvas()
+  drawMeme()
+  //   window.addEventListener('resize', resizeCanvas)
 }
 
 function drawMeme() {
@@ -54,12 +54,15 @@ function onChangeFontSize(elButton) {
 
 function onSwitchLine() {
   changeEditedLine()
-  var newText = setLineText()
-  document.querySelector('[name="meme-text"]').value = newText ? newText : ''
+  var currText = getEditedText()
+  var elTextInput = document.querySelector('[name="meme-text"]')
+  elTextInput.value = currText
 }
 
-function resizeCanvas() {
-  gElCanvas.width = window.innerWidth - 16
-  gElCanvas.height = window.innerWidth - 16
-  drawMeme()
-}
+// function resizeCanvas() {
+//   if (window.innerWidth === 1140) { --not workinf well
+//     gElCanvas.width -= 90
+//     gElCanvas.height -= 90
+//     drawMeme()
+//   }
+// }
