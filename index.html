@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/gallery.css">
-    <link rel="stylesheet" href="styles/editor.css" />
+    <link rel="stylesheet" href="styles/meme.css" />
     
     <title>My Meme Generator</title>
   </head>
@@ -21,14 +21,16 @@
       <div class="grid-gallery"></div>
     </div>
     <div class="editor-container flex justify-center closed">
-      
-      <canvas id="meme-canvas" width="580px" height="580px"></canvas>
+      <div class="canvas-container">
+      <canvas id="meme-canvas"></canvas>
+    </div>
       <div class="grid-container">
         <label class="text-input">
           <input
             name="meme-text"
             type="text"
             oninput="handleTextInput(event)"
+           
           />
         </label>
         <button class="btn line-switch" onclick="onSwitchLine(this)"></button>
@@ -38,6 +40,7 @@
             name="text-color"
             id=""
             oninput="handleColorInput(event)"
+            
         /></label>
         <button
           class="btn font-grow"

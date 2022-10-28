@@ -77,7 +77,6 @@ body {
 .main-layout > header {
   width: 100%;
   background-color: var(--clrp1);
-  margin-bottom: 25px;
   height: 8vh;
   justify-content: space-between;
   align-items: center;
@@ -128,4 +127,21 @@ nav button {
 footer > * {
   display: block;
   padding-bottom: 15px;
+}
+
+/*MOBILE*/
+
+@media (max-width: 480px) {
+  .main-layout > *:not(.full) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main-layout > .editor-container {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-layout > header {
+    margin-bottom: 10px;
+  }
 }

@@ -3,22 +3,25 @@
 var gMeme = {
   imgUrl: 'img/1.jpg',
   lines: createTextLines(),
-  editedTextIdx: '0',
+  selectedTextIdx: 0,
+  isLineSelected: false,
 }
 
 function createTextLines() {
   return [
     {
+      idx: 0,
       text: '',
       textColor: 'white',
-      fontSize: 80,
-      position: { x: 20, y: 100 },
+      fontSize: 70,
+      position: 6,
     },
     {
+      idx: 1,
       text: '',
       textColor: 'white',
-      fontSize: 80,
-      position: { x: 20, y: 400 },
+      fontSize: 70,
+      position: 1.05,
     },
   ]
 }
@@ -27,16 +30,32 @@ function getMeme() {
   return gMeme
 }
 
-function changeEditedLine() {
-  gMeme.editedTextIdx = gMeme.editedTextIdx === '0' ? '1' : '0'
+function changeSelectedLine() {
+  gMeme.selectedTextIdx = gMeme.selectedTextIdx === 0 ? 1 : 0
 }
 
-function getEditedText() {
-  return gMeme.lines[gMeme.editedTextIdx].text
+function selectLine() {
+  gMeme.isLineSelected = true
+}
+
+function unSelectLine() {
+  gMeme.isLineSelected = false
+}
+
+function isLineSelected() {
+  return gMeme.isLineSelected
+}
+
+function getSelectedText() {
+  return gMeme.lines[gMeme.selectedTextIdx].text
+}
+
+function getSelectedTextIdx() {
+  return gMeme.selectedTextIdx
 }
 
 function setLineText(txt) {
-  gMeme.lines[gMeme.editedTextIdx].text = txt
+  gMeme.lines[gMeme.selectedTextIdx].text = txt
 }
 
 function setImg(imgID) {
@@ -44,13 +63,13 @@ function setImg(imgID) {
 }
 
 function setTextColor(color) {
-  gMeme.lines[gMeme.editedTextIdx].textColor = color
+  gMeme.lines[gMeme.selectedTextIdx].textColor = color
 }
 
 function increaseFont() {
-  gMeme.lines[gMeme.editedTextIdx].fontSize += 5
+  gMeme.lines[gMeme.selectedTextIdx].fontSize += 5
 }
 
 function decreaseFont() {
-  gMeme.lines[gMeme.editedTextIdx].fontSize -= 5
+  gMeme.lines[gMeme.selectedTextIdx].fontSize -= 5
 }

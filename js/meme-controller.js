@@ -6,14 +6,13 @@ let gCtx
 function renderMeme() {
   gElCanvas = document.getElementById('meme-canvas')
   gCtx = gElCanvas.getContext('2d')
-
+  resizeCanvas()
+  addEventListeners()
   drawMeme()
-  //   window.addEventListener('resize', resizeCanvas)
 }
 
 function drawMeme() {
   const { imgUrl, lines } = getMeme()
-
   const img = new Image()
   img.src = imgUrl
   img.onload = () => {
@@ -23,13 +22,22 @@ function drawMeme() {
 }
 
 function drawText(textProps) {
-  const { text, textColor, fontSize, position } = textProps
+  const { text, textColor, fontSize, position, idx } = textProps
   gCtx.lineWidth = 5
   gCtx.strokeStyle = 'black'
   gCtx.fillStyle = textColor
   gCtx.font = `${fontSize}px Impact`
-  gCtx.fillText(text, position.x, position.y)
-  gCtx.strokeText(text, position.x, position.y)
+  gCtx.fillText(text, 30, gElCanvas.height / position)
+  gCtx.strokeText(text, 30, gElCanvas.height / position)
+  if (idx === getSelectedTextIdx() && isLineSelected()) {
+    gCtx.fillStyle = 'rgb(0,0,0, 0.3)'
+    gCtx.fillRect(
+      0,
+      gElCanvas.height / position - fontSize,
+      gElCanvas.width,
+      fontSize + 20
+    )
+  }
 }
 
 function handleTextInput(event) {
@@ -53,16 +61,42 @@ function onChangeFontSize(elButton) {
 }
 
 function onSwitchLine() {
-  changeEditedLine()
-  var currText = getEditedText()
+  changeSelectedLine()
+  selectLine()
+  var currText = getSelectedText()
   var elTextInput = document.querySelector('[name="meme-text"]')
+  elTextInput.focus()
   elTextInput.value = currText
+  drawMeme()
 }
 
-// function resizeCanvas() {
-//   if (window.innerWidth === 1140) { --not workinf well
-//     gElCanvas.width -= 90
-//     gElCanvas.height -= 90
-//     drawMeme()
-//   }
-// }
+function resizeCanvas() {
+  const elContainer = document.querySelector('.canvas-container')
+  gElCanvas.width = elContainer.offsetWidth
+  gElCanvas.height = elContainer.offsetHeight
+  drawMeme()
+}
+
+function handleTextClick(event) {
+  event.preventDefault()
+  console.log('click event fired')
+  getSelectedTextIdx()
+}
+
+function addEventListeners() {
+  window.addEventListener('resize', resizeCanvas)
+
+  const elTextInput = document.querySelector('[name="meme-text"]')
+
+  elTextInput.addEventListener('focus', (event) => {
+    event.preventDefault()
+    selectLine()
+    drawMeme()
+  })
+
+  elTextInput.addEventListener('focusout', (event) => {
+    event.preventDefault()
+    unSelectLine()
+    drawMeme()
+  })
+}

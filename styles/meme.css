@@ -9,7 +9,7 @@ canvas {
 .grid-container {
   display: grid;
   grid-gap: 20px;
-  min-width: 465px;
+  min-width: 415px; /*want a neater solution here*/
 
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -133,5 +133,37 @@ canvas {
   height: 100%;
 }
 
+/*MOBILE*/
+
+@media (max-width: 480px) {
+  .canvas-container {
+    width: 90vw;
+    height: 90vw;
+    margin-bottom: 10px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-gap: 20px;
+    min-width: 0px;
+    min-height: 450px;
+  }
+}
+
+/*MEDIUM*/
+
+/*LARGE*/
+
+@media (min-width: 1100px) {
+  .canvas-container {
+    width: 530px;
+    height: 530px;
+  }
+}
+
 @media (min-width: 1140px) {
+  .canvas-container {
+    width: 580px;
+    height: 580px;
+  }
 }
