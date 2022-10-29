@@ -14,14 +14,14 @@ function createTextLines() {
       text: '',
       textColor: 'white',
       fontSize: 70,
-      position: 6,
+      position: { x: 30, y: 75 },
     },
     {
       idx: 1,
       text: '',
       textColor: 'white',
       fontSize: 70,
-      position: 1.05,
+      position: { x: 30, y: 552 },
     },
   ]
 }

@@ -25,6 +25,11 @@ canvas {
   padding: 0px;
 }
 
+.btn:disabled {
+  background-color: rgb(128, 128, 128, 0.2);
+  cursor: not-allowed;
+}
+
 .btn.add-line {
   background-image: url('../symbols/add.png');
   background-repeat: no-repeat;
@@ -32,21 +37,21 @@ canvas {
   grid-area: 2/3;
 }
 
-.btn.align-right {
+.btn.text-right {
   background-image: url('../symbols/align-to-right.png');
   background-repeat: no-repeat;
   background-position: center;
   grid-area: 3/5;
 }
 
-.btn.align-left {
+.btn.text-left {
   background-image: url('../symbols/align-to-left.png');
   background-repeat: no-repeat;
   background-position: center;
   grid-area: 3/3;
 }
 
-.btn.align-center {
+.btn.text-center {
   background-image: url('../symbols/center-text-alignment.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -99,8 +104,9 @@ canvas {
   grid-row-start: 5;
   grid-column: 1/6;
 }
-.btn.share {
+.btn.share-container {
   grid-area: 6/4/ 6/6;
+  text-align: center;
 }
 /******************************/
 

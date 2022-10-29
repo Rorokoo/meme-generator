@@ -1,8 +1,8 @@
 :root {
   /*COLOR PALETTE*/
-  --clrp1: #ff7f00;
+  --clrp1: rgb(255, 127, 0);
   --clr1: white;
-  --clr2: #e3e3e3;
+  --clr2: rgb(227, 227, 227);
 }
 
 * {

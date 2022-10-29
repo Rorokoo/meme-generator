@@ -23,21 +23,20 @@ function drawMeme() {
 
 function drawText(textProps) {
   const { text, textColor, fontSize, position, idx } = textProps
+  if (idx === getSelectedTextIdx() && isLineSelected())
+    drawRect(text, fontSize, position)
   gCtx.lineWidth = 5
   gCtx.strokeStyle = 'black'
   gCtx.fillStyle = textColor
   gCtx.font = `${fontSize}px Impact`
-  gCtx.fillText(text, 30, gElCanvas.height / position)
-  gCtx.strokeText(text, 30, gElCanvas.height / position)
-  if (idx === getSelectedTextIdx() && isLineSelected()) {
-    gCtx.fillStyle = 'rgb(0,0,0, 0.3)'
-    gCtx.fillRect(
-      0,
-      gElCanvas.height / position - fontSize,
-      gElCanvas.width,
-      fontSize + 20
-    )
-  }
+  gCtx.fillText(text, position.x, position.y)
+  gCtx.strokeText(text, position.x, position.y)
+}
+
+function drawRect(text, fontSize, position) {
+  var width = gCtx.measureText(text).width + 20
+  gCtx.fillStyle = 'rgb(227, 227, 227,0.5)'
+  gCtx.fillRect(position.x, position.y - fontSize, width, fontSize + 20)
 }
 
 function handleTextInput(event) {
