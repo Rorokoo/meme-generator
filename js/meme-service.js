@@ -3,8 +3,9 @@
 var gMeme = {
   imgUrl: 'img/1.jpg',
   lines: createTextLines(),
-  selectedTextIdx: 0,
+  selectedLineIdx: 0,
   isLineSelected: false,
+  lineRect: [],
 }
 
 function createTextLines() {
@@ -46,16 +47,16 @@ function isLineSelected() {
   return gMeme.isLineSelected
 }
 
-function getSelectedText() {
-  return gMeme.lines[gMeme.selectedTextIdx].text
+function getSelectedLine() {
+  return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-function getSelectedTextIdx() {
-  return gMeme.selectedTextIdx
+function getSelectedLineIdx() {
+  return gMeme.selectedLineIdx
 }
 
 function setLineText(txt) {
-  gMeme.lines[gMeme.selectedTextIdx].text = txt
+  gMeme.lines[gMeme.selectedLineIdx].text = txt
 }
 
 function setImg(imgID) {
@@ -72,4 +73,10 @@ function increaseFont() {
 
 function decreaseFont() {
   gMeme.lines[gMeme.selectedTextIdx].fontSize -= 5
+}
+
+function saveLine(line) {
+  var selectedIdx = getSelectedLineIdx()
+
+  gMeme.lines[selectedIdx] = line
 }

@@ -10,7 +10,7 @@
     
     <title>My Meme Generator</title>
   </head>
-  <body onload="onInit()" class="main-layout flex column space-between">
+  <body onload="onInit()" class="main-layout ">
     <header class="full flex">
       <img class="logo" src="symbols/logo.png" />
       <nav><ul class="flex"><li><button onclick="openGallery()">Gallery</li></button><button><li>About</li></button></nav>
@@ -53,8 +53,8 @@
           value="-"
         ></button>
         <button disabled class="btn add-line" ></button>
-        <button disabled class="btn text-center"></button>
-        <button disabled class="btn text-right"></button>
+        <button class="btn text-center" onclick="onCenterText()"></button>
+        <button class="btn text-right" onclick="onTextRight()"></button>
         <button disabled class="btn text-left"></button>
         <button disabled class="btn erase"></button>
         <button disabled class="btn highlight"></button>

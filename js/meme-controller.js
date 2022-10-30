@@ -22,8 +22,8 @@ function drawMeme() {
 }
 
 function drawText(textProps) {
-  const { text, textColor, fontSize, position, idx } = textProps
-  if (idx === getSelectedTextIdx() && isLineSelected())
+  const { idx, text, textColor, fontSize, position } = textProps
+  if (idx === getSelectedLineIdx() && isLineSelected())
     drawRect(text, fontSize, position)
   gCtx.lineWidth = 5
   gCtx.strokeStyle = 'black'
@@ -34,9 +34,13 @@ function drawText(textProps) {
 }
 
 function drawRect(text, fontSize, position) {
+  var x = position.x
+  var y = position.y - fontSize
   var width = gCtx.measureText(text).width + 20
+  var height = fontSize + 20
   gCtx.fillStyle = 'rgb(227, 227, 227,0.5)'
-  gCtx.fillRect(position.x, position.y - fontSize, width, fontSize + 20)
+
+  gCtx.fillRect(x, y, width, height)
 }
 
 function handleTextInput(event) {
@@ -62,11 +66,15 @@ function onChangeFontSize(elButton) {
 function onSwitchLine() {
   changeSelectedLine()
   selectLine()
-  var currText = getSelectedText()
+  focusTextInput()
+  drawMeme()
+}
+
+function focusTextInput() {
+  var currText = getSelectedLine().text
   var elTextInput = document.querySelector('[name="meme-text"]')
   elTextInput.focus()
   elTextInput.value = currText
-  drawMeme()
 }
 
 function resizeCanvas() {
@@ -78,24 +86,32 @@ function resizeCanvas() {
 
 function handleTextClick(event) {
   event.preventDefault()
-  console.log('click event fired')
-  getSelectedTextIdx()
+  getSelectedLineIdx()
 }
 
 function addEventListeners() {
   window.addEventListener('resize', resizeCanvas)
-
   const elTextInput = document.querySelector('[name="meme-text"]')
-
   elTextInput.addEventListener('focus', (event) => {
     event.preventDefault()
     selectLine()
     drawMeme()
   })
-
   elTextInput.addEventListener('focusout', (event) => {
     event.preventDefault()
     unSelectLine()
     drawMeme()
   })
+}
+
+function onCenterText() {
+  var line = getSelectedLine()
+  var canvasCenter = gElCanvas.width / 2
+  var lineCenter = gCtx.measureText(line.text).width / 2
+  var x = canvasCenter - lineCenter
+
+  line.position.x = x
+  saveLine(line)
+  focusTextInput()
+  drawMeme()
 }
