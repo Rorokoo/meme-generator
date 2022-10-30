@@ -32,7 +32,7 @@ function getMeme() {
 }
 
 function changeSelectedLine() {
-  gMeme.selectedTextIdx = gMeme.selectedTextIdx === 0 ? 1 : 0
+  gMeme.selectedLineIdx = gMeme.selectedLineIdx === 0 ? 1 : 0
 }
 
 function selectLine() {
@@ -64,15 +64,15 @@ function setImg(imgID) {
 }
 
 function setTextColor(color) {
-  gMeme.lines[gMeme.selectedTextIdx].textColor = color
+  gMeme.lines[gMeme.selectedLineIdx].textColor = color
 }
 
 function increaseFont() {
-  gMeme.lines[gMeme.selectedTextIdx].fontSize += 5
+  gMeme.lines[gMeme.selectedLineIdx].fontSize += 5
 }
 
 function decreaseFont() {
-  gMeme.lines[gMeme.selectedTextIdx].fontSize -= 5
+  gMeme.lines[gMeme.selectedLineIdx].fontSize -= 5
 }
 
 function saveLine(line) {
