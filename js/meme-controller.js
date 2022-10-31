@@ -18,12 +18,13 @@ function drawMeme() {
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     lines.forEach((line) => drawText(line))
+    uploadImg()
   }
 }
 
-function drawText(textProps) {
-  const { idx, text, textColor, fontSize, position } = textProps
-  if (idx === getSelectedLineIdx() && isLineSelected())
+function drawText(line) {
+  const { id, text, textColor, fontSize, position } = line
+  if (id === getSelectedLineId() && isLineSelected())
     drawRect(text, fontSize, position)
   gCtx.lineWidth = 5
   gCtx.strokeStyle = 'black'
@@ -71,7 +72,7 @@ function onSwitchLine() {
 }
 
 function focusTextInput() {
-  var currText = getSelectedLine().text
+  var currText = !getSelectedLine() ? '' : getSelectedLine().text
   var elTextInput = document.querySelector('[name="meme-text"]')
   elTextInput.focus()
   elTextInput.value = currText
@@ -114,4 +115,48 @@ function onCenterText() {
   saveLine(line)
   focusTextInput()
   drawMeme()
+}
+
+function onTextRight() {
+  var line = getSelectedLine()
+  var lineWidth = gCtx.measureText(line.text).width
+  var x = gElCanvas.width - lineWidth - 10
+  line.position.x = x
+  saveLine(line)
+  focusTextInput()
+  drawMeme()
+}
+
+function onTextLeft() {
+  var line = getSelectedLine()
+  var x = 10
+  line.position.x = x
+  saveLine(line)
+  focusTextInput()
+  drawMeme()
+}
+
+function onEraseLine() {
+  if (!getSelectedLine()) return
+  eraseLine()
+  focusTextInput()
+  drawMeme()
+}
+
+function onAddLine() {
+  var line = createTextLine()
+  var canvasCenter = gElCanvas.width / 2
+  var lineCenter = gCtx.measureText(line.text).width / 2
+  var x = canvasCenter - lineCenter
+  line.position.x = x
+  line.position.y = canvasCenter
+  addLine(line)
+  setSelectedLine(line.id)
+  focusTextInput()
+  drawMeme()
+}
+
+function downloadImg(elLink) {
+  const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+  elLink.href = imgContent
 }

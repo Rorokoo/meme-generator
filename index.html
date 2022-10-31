@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/gallery.css">
     <link rel="stylesheet" href="styles/meme.css" />
+    <script src="https://kit.fontawesome.com/ad35105973.js" crossorigin="anonymous"></script>
     
     <title>My Meme Generator</title>
   </head>
-  <body onload="onInit()" class="main-layout ">
+  <body onload="onInit()" class="main-layout flex column ">
     <header class="full flex">
       <img class="logo" src="symbols/logo.png" />
       <nav><ul class="flex"><li><button onclick="openGallery()">Gallery</li></button><button><li>About</li></button></nav>
@@ -52,14 +53,16 @@
           onclick="onChangeFontSize(this)"
           value="-"
         ></button>
-        <button disabled class="btn add-line" ></button>
+        <button  class="btn add-line" onclick="onAddLine()" ></button>
         <button class="btn text-center" onclick="onCenterText()"></button>
         <button class="btn text-right" onclick="onTextRight()"></button>
-        <button disabled class="btn text-left"></button>
-        <button disabled class="btn erase"></button>
+        <button class="btn text-left" onclick="onTextLeft()"></button>
+        <button class="btn erase" onclick="onEraseLine()"></button>
         <button disabled class="btn highlight"></button>
         <select disabled class="btn stickers"></select>
-        <button disabled class="btn share-container flex justify-center align-center ">Share</div>
+        <a href="#" class="btn download flex justify-center align-center" onclick="downloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download"></i></a>
+        <button class="btn share"></button>
+    
       </div>
     </div>
 
@@ -68,6 +71,8 @@
       <small>all rights reserved 2019</small>
     </footer>
 
+    <script src="js/utils.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>

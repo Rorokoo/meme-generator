@@ -12,6 +12,7 @@ function switchToGallery() {
 }
 
 function switchToEditor() {
+  focusTextInput()
   const gallery = document.querySelector('.gallery-container')
   const editor = document.querySelector('.editor-container')
   gallery.classList.toggle('closed')

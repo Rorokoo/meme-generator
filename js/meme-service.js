@@ -5,21 +5,20 @@ var gMeme = {
   lines: createTextLines(),
   selectedLineIdx: 0,
   isLineSelected: false,
-  lineRect: [],
 }
 
 function createTextLines() {
   return [
     {
-      idx: 0,
-      text: '',
+      id: 0,
+      text: 'enter text',
       textColor: 'white',
       fontSize: 70,
       position: { x: 30, y: 75 },
     },
     {
-      idx: 1,
-      text: '',
+      id: 1,
+      text: 'enter text',
       textColor: 'white',
       fontSize: 70,
       position: { x: 30, y: 552 },
@@ -27,12 +26,25 @@ function createTextLines() {
   ]
 }
 
+function createTextLine() {
+  return {
+    id: makeId(),
+    text: 'enter text',
+    textColor: 'white',
+    fontSize: 70,
+    position: { x: null, y: null },
+  }
+}
+
 function getMeme() {
   return gMeme
 }
 
 function changeSelectedLine() {
-  gMeme.selectedLineIdx = gMeme.selectedLineIdx === 0 ? 1 : 0
+  var currLineIdx = gMeme.selectedLineIdx
+  var nextLineIdx = currLineIdx + 1
+  nextLineIdx = !gMeme.lines[nextLineIdx] ? 0 : currLineIdx + 1
+  gMeme.selectedLineIdx = nextLineIdx
 }
 
 function selectLine() {
@@ -48,11 +60,12 @@ function isLineSelected() {
 }
 
 function getSelectedLine() {
+  if (!gMeme.lines[gMeme.selectedLineIdx]) gMeme.selectedLineIdx = 0
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-function getSelectedLineIdx() {
-  return gMeme.selectedLineIdx
+function getSelectedLineId() {
+  return gMeme.lines[gMeme.selectedLineIdx].id
 }
 
 function setLineText(txt) {
@@ -76,7 +89,24 @@ function decreaseFont() {
 }
 
 function saveLine(line) {
-  var selectedIdx = getSelectedLineIdx()
+  gMeme.lines[gMeme.selectedLineIdx] = line
+}
 
-  gMeme.lines[selectedIdx] = line
+function eraseLine() {
+  var id = getSelectedLineId()
+
+  var line = gMeme.lines.find((line) => line.id === id)
+
+  var lineIdx = gMeme.lines.indexOf(line)
+  gMeme.lines.splice(lineIdx, 1)
+}
+
+function addLine(line) {
+  gMeme.lines.push(line)
+}
+
+function setSelectedLine(id) {
+  var line = gMeme.lines.find((line) => line.id === id)
+  var lineIdx = gMeme.lines.indexOf(line)
+  gMeme.selectedLineIdx = lineIdx
 }
